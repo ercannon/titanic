@@ -5,7 +5,13 @@ Created on Thu Jul 22 16:36:20 2021
 
 @author: cannon
 """
-from datamanagement.analyse_data import load_titanic_data
+from datamanagement.analyze_data import load_titanic_data,analyze
+from datamanagement.split_data import split_data
+from datamanagement.data_clean import clean_data
 
 data=load_titanic_data()
-print(data)
+#analyze(data)
+train_set, test_set = split_data(data)
+train_data,train_labels=train_set.drop("Survived",axis=1),train_set["Survived"]
+#analyze(train_data)
+clean_data(train_data)
