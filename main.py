@@ -17,4 +17,12 @@ train_data,train_labels=train_set.drop("Survived",axis=1),train_set["Survived"]
 #analyze(train_set)
 train_data_cleaned=clean_data_pipelines(train_data)
 modelobj = Model()
-modelobj.estadisticas(train_data_cleaned,train_labels)
+#modelobj.estadisticas(train_data_cleaned,train_labels)
+modelobj.validacion_cruzada(train_data_cleaned, train_labels)
+# =============================================================================
+# modelobj.train(train_data_cleaned,train_labels)
+# test_data,test_labels=test_set.drop("Survived",axis=1),test_set["Survived"]
+# test_data_cleaned=clean_data_pipelines(test_data)
+# prediction=modelobj.predict(test_data_cleaned)
+# modelobj.print_estadisticas(test_labels, prediction)
+# =============================================================================
