@@ -28,7 +28,10 @@ def clean_data(data):
     
 def clean_data_pipelines(data):
      #quitamos el número de cabina, hay valores a vacío. Nombre no aporta nada
-     titanic_numeric=data.drop(["Cabin","Name","Sex","Ticket","Embarked","PassengerId","Pclass"],axis=1)
+     titanic_numeric=data.drop(["Name","Sex","Ticket","Embarked","PassengerId","Pclass"],axis=1)
+     #si camarote es na suopngo que no tiene, así que le meto un 0, y los otros a 1
+     data["Cabin"]=data["Cabin"].fillna(0)
+     data["Cabin"] = np.where((data.Cabin == 0),0,1)
      #Mediana a los valores numeros que tienen Na y luego standarizo los valores
      num_pipeline = Pipeline([
         ('imputer', SimpleImputer(strategy="median")),

@@ -19,7 +19,7 @@ train_data_cleaned=clean_data_pipelines(train_data)
 modelobj = Model()
 #modelobj.estadisticas(train_data_cleaned,train_labels)
 #modelobj.validacion_cruzada(train_data_cleaned, train_labels)
-modelobj.fine_tuning(train_data_cleaned,train_labels)
+#modelobj.fine_tuning(train_data_cleaned,train_labels)
 modelobj.validacion_cruzada(train_data_cleaned, train_labels)
 # =============================================================================
 # modelobj.train(train_data_cleaned,train_labels)
