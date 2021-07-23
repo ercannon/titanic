@@ -29,7 +29,7 @@ def analyze(titanic):
     plt.show()
     #Como es pequenyo, busco la matriz de correlacin. veo que la tarifa influye
     corr_matrix = titanic.corr()
-    print(corr_matrix["Survived"])
+    print("Correlation matrix ",corr_matrix["Survived"])
     #vamos a pintar los valores más "parecidos"
     attributes = ["Survived", "Fare", "Parch"]
     scatter_matrix(titanic[attributes], figsize=(12, 8))
