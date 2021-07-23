@@ -63,13 +63,19 @@ class BaseModel:
     def predict(self, data):
         return self.model.predict(data)
     
-    def fine_tuning(self,data,labels):
-        param_grid = { 
-            'n_estimators': [200, 500],
-            'max_features': ['auto', 'sqrt', 'log2'],
-            'max_depth' : [4,5,6,7,8],
-            'criterion' :['gini', 'entropy']
-        }
+    def fine_tuning(self,data,labels,supportVM=False):
+        if (supportVM):
+            param_grid = {'C': [0.1,1, 10, 100], 
+                          'gamma': [1,0.1,0.01,0.001],
+                          'kernel': ['rbf', 'poly', 'sigmoid']
+            }
+        else:
+            param_grid = { 
+                'n_estimators': [200, 500],
+                'max_features': ['auto', 'sqrt', 'log2'],
+                'max_depth' : [4,5,6,7,8],
+                'criterion' :['gini', 'entropy']
+            }
         grid_search = GridSearchCV(self.model, param_grid, cv=5)
         grid_search.fit(data,labels)
         self.model=grid_search.best_estimator_

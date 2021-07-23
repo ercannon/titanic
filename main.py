@@ -14,6 +14,8 @@ from constants import data_constants as const
 modelobj = Model()
 
 model_name = const.BEST_MODEL_ID
+#model_name = const.SVM_MODEL
+is_svm= False
 
 if (not modelobj.load_model(model_name)):
     data=load_titanic_data()
@@ -25,9 +27,9 @@ if (not modelobj.load_model(model_name)):
     print("datos limpiados")
     #modelobj.estadisticas(train_data_cleaned,train_labels)
     #modelobj.validacion_cruzada(train_data_cleaned, train_labels)
-    modelobj.fine_tuning(train_data_cleaned,train_labels)
+    modelobj.fine_tuning(train_data_cleaned,train_labels,is_svm)
     print("fine tuning done")
-    #modelobj.validacion_cruzada(train_data_cleaned, train_labels)
+    modelobj.validacion_cruzada(train_data_cleaned, train_labels)
     modelobj.train(train_data_cleaned,train_labels)
     print("modelo entrenado")
     test_data,test_labels=test_set.drop("Survived",axis=1),test_set["Survived"]

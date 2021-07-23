@@ -11,3 +11,5 @@ import os
 TITANIC_PATH=os.path.join("dataset", "titanic")
 
 BEST_MODEL_ID="MEJOR_MODELO"
+
+SVM_MODEL="SVM_MODEL"
