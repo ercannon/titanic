@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.model_selection import GridSearchCV
+import joblib
 
 
 def plot_roc_curve(fpr, tpr, label=None):
@@ -73,3 +74,18 @@ class BaseModel:
         grid_search.fit(data,labels)
         self.model=grid_search.best_estimator_
     
+    def save_model(self,model_name):
+        joblib.dump(self.model,model_name + ".pkl")
+        
+    def load_model(self,model_name):
+        try:
+            model_loaded = joblib.load(model_name + ".pkl")       
+            self.model = model_loaded
+            return True
+        except:
+            return False
+        
+        
+        
+        
+

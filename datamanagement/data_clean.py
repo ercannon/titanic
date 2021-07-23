@@ -32,6 +32,8 @@ def clean_data_pipelines(data):
      #si camarote es na suopngo que no tiene, así que le meto un 0, y los otros a 1
      data["Cabin"]=data["Cabin"].fillna(0)
      data["Cabin"] = np.where((data.Cabin == 0),0,1)
+     #limpio el na de Embarked
+     data["Embarked"]=data["Embarked"].fillna("S")
      #Mediana a los valores numeros que tienen Na y luego standarizo los valores
      num_pipeline = Pipeline([
         ('imputer', SimpleImputer(strategy="median")),
@@ -39,7 +41,7 @@ def clean_data_pipelines(data):
         ])
      #titanic_num_tr = num_pipeline.fit_transform(titanic_numeric)
      num_attribs = list(titanic_numeric)
-     cat_attribs = ["Sex"]
+     cat_attribs = ["Sex","Pclass"]
      full_pipeline = ColumnTransformer([
         ("num", num_pipeline, num_attribs),
         ("cat", OrdinalEncoder(), cat_attribs),
