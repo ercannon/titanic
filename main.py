@@ -8,7 +8,7 @@ Created on Thu Jul 22 16:36:20 2021
 from datamanagement.analyze_data import load_titanic_data,analyze
 from datamanagement.split_data import split_data
 from datamanagement.data_clean import clean_data_pipelines
-from models.RandomForest import Model
+from models.Model import Model
 
 data=load_titanic_data()
 #analyze(data)
@@ -17,4 +17,4 @@ train_data,train_labels=train_set.drop("Survived",axis=1),train_set["Survived"]
 analyze(train_set)
 train_data_cleaned=clean_data_pipelines(train_data)
 modelobj = Model()
-modelobj.confusion_matrix(train_data_cleaned,train_labels)
+modelobj.estadisticas(train_data_cleaned,train_labels)
