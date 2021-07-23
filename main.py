@@ -14,7 +14,7 @@ data=load_titanic_data()
 #analyze(data)
 train_set, test_set = split_data(data)
 train_data,train_labels=train_set.drop("Survived",axis=1),train_set["Survived"]
-analyze(train_set)
+#analyze(train_set)
 train_data_cleaned=clean_data_pipelines(train_data)
 modelobj = Model()
 modelobj.estadisticas(train_data_cleaned,train_labels)
