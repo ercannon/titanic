@@ -5,7 +5,7 @@ Created on Thu Jul 22 16:36:20 2021
 
 @author: cannon
 """
-from datamanagement.analyze_data import load_titanic_data,analyze,save_prediction
+from datamanagement.analyze_data import load_titanic_data,save_prediction
 from datamanagement.split_data import split_data
 from datamanagement.data_clean import clean_data_pipelines
 from models.Model import Model
