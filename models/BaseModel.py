@@ -44,19 +44,17 @@ class BaseModel:
         fpr, tpr, thresholds = roc_curve(labels, predictions)
         plot_roc_curve(fpr, tpr)
   
-# =============================================================================
-#     #deprecated
-#     def estadisticas(self,data,labels):
-#         print("Accuracy ratio :",cross_val_score(self.model, data, labels, cv=3, scoring="accuracy"))
-#         y_train_pred = cross_val_predict(self.model, data, labels, cv=3)
-#         print("Matriz de confusion",confusion_matrix(labels, y_train_pred))
-#         print("Precision: ",precision_score(labels, y_train_pred))
-#         print("Recall ",recall_score(labels, y_train_pred))
-#         print("F1 score ",f1_score(labels, y_train_pred))
-#         fpr, tpr, thresholds = roc_curve(labels, y_train_pred)
-#         plot_roc_curve(fpr, tpr)
-#     
-# =============================================================================
+    #deprecated
+    def estadisticas(self,data,labels):
+        print("Accuracy ratio :",cross_val_score(self.model, data, labels, cv=3, scoring="accuracy"))
+        y_train_pred = cross_val_predict(self.model, data, labels, cv=3)
+        print("Matriz de confusion",confusion_matrix(labels, y_train_pred))
+        print("Precision: ",precision_score(labels, y_train_pred))
+        print("Recall ",recall_score(labels, y_train_pred))
+        print("F1 score ",f1_score(labels, y_train_pred))
+        fpr, tpr, thresholds = roc_curve(labels, y_train_pred)
+        plot_roc_curve(fpr, tpr)
+    
     def train(self,data,labels):
         self.model.fit(data,labels)
     

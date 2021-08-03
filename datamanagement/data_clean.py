@@ -25,6 +25,25 @@ def clean_data(data):
     titanic_transformed=pd.DataFrame(X,columns=titanic_numeric.columns)
     data["Sex"] = np.where((data.Sex == 'male'),1,0)
     print(data["Sex"])
+
+def clean_data_manually(data):
+    #quito columnas que no valen para nada
+    data_clean=data.drop(["Name","PassengerId","Ticket","Embarked"],axis=1)
+    #si camarote es na suopngo que no tiene, así que le meto un 0, y los otros a 1
+    data_clean["Cabin"]=data_clean["Cabin"].fillna(0)
+    data_clean["Cabin"] = np.where((data_clean.Cabin == 0),0,1)
+    #limpio el na de Embarked
+    #data_clean["Embarked"]=data_clean["Embarked"].fillna("S")
+    median = data_clean["Fare"].median()
+    data_clean["Fare"]=data_clean["Fare"].fillna(median)
+    median = data_clean["Age"].median()
+    data_clean["Age"]=data_clean["Age"].fillna(median)
+
+    data_clean["Sex"] = np.where((data_clean.Sex == "male"),0,1)
+    data_clean["Sex"].fillna(0)
+    
+    return data_clean
+    
     
 def clean_data_pipelines(data):
      #quitamos el número de cabina, hay valores a vacío. Nombre no aporta nada
@@ -41,7 +60,7 @@ def clean_data_pipelines(data):
         ])
      #titanic_num_tr = num_pipeline.fit_transform(titanic_numeric)
      num_attribs = list(titanic_numeric)
-     cat_attribs = ["Sex","Pclass"]
+     cat_attribs = ["Sex","Pclass","Embarked"]
      full_pipeline = ColumnTransformer([
         ("num", num_pipeline, num_attribs),
         ("cat", OrdinalEncoder(), cat_attribs),
